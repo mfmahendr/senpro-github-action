@@ -30,8 +30,11 @@ jobs:
         node-version: [16.x]
 
     steps:
+      - uses: actions/checkout@v2
+      - name: Testing Build pre-Deploy
+        uses: actions/setup-node@v2
       - name: Build app on VM
-      - uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME}}
@@ -62,3 +65,4 @@ jobs:
                 npm run build;
               }
             ]
+
